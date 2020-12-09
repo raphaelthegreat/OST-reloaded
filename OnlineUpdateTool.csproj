@@ -128,7 +128,6 @@
     <Compile Include="Utils\STSLicense.cs" />
     <Compile Include="Utils\STSPermission.cs" />
     <Compile Include="Utils\functionObject.cs" />
-    <Compile Include="Utils\ServerInfo.cs" />
     <Compile Include="Utils\NetworkInformation.cs" />
     <Compile Include="Utils\CLogs.cs" />
     <Compile Include="Utils\Progress.cs" />
@@ -164,10 +163,6 @@
     <Compile Include="UserForms\DoReportServiceResultDelegate.cs" />
     <Compile Include="UserForms\QueryServerSimUnlockCode.cs" />
     <Compile Include="UserForms\DeleteServerSimUnlockCode.cs" />
-    <Compile Include="UserForms\UserInterAction.cs" />
-    <Compile Include="UserForms\FormUserLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="UserForms\FormUserEnterSpc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,7 +400,6 @@
     <EmbeddedResource Include="OnlineUpdateTool\UserForms\FormUserEnterSerialNumber.resx" />
     <EmbeddedResource Include="UserForms\FormUserAuth.resx" />
     <EmbeddedResource Include="UserForms\FormUserEnterSpc.resx" />
-    <EmbeddedResource Include="UserForms\FormUserLogin.resx" />
     <EmbeddedResource Include="UserForms\FormUserModelWarning.resx" />
     <EmbeddedResource Include="UserForms\FormUserSwitchSkuId.resx" />
     <EmbeddedResource Include="UserForms\FormUserWarning.resx" />

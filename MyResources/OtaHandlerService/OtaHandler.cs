@@ -223,11 +223,6 @@ namespace MyResources.OtaHandlerService
       string authUsername = instance.AuthUsername;
       string empty = string.Empty;
       string authDomain = instance.AuthDomain;
-      if (!UserInterAction.DoCredentialReqeust(ref authUsername, ref empty, ref authDomain))
-      {
-        CLogs.W("User cancels www authenticate information request.");
-        return false;
-      }
       instance.AuthUsername = authUsername;
       instance.AuthPassword = empty;
       instance.AuthDomain = authDomain;
@@ -250,11 +245,6 @@ namespace MyResources.OtaHandlerService
       string proxyAuthUsername = instance.ProxyAuthUsername;
       string empty = string.Empty;
       string proxyAuthDomain = instance.ProxyAuthDomain;
-      if (!UserInterAction.DoCredentialReqeust(ref proxyAuthUsername, ref empty, ref proxyAuthDomain))
-      {
-        CLogs.W("User cancels proxy authenticate information request.");
-        return false;
-      }
       instance.ProxyAuthUsername = proxyAuthUsername;
       instance.ProxyAuthPassword = empty;
       instance.ProxyAuthDomain = proxyAuthDomain;

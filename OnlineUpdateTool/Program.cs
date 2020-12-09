@@ -52,10 +52,8 @@ namespace OnlineUpdateTool
             }
             instance.ClearCacheFiles();
           }
-          if (OtaParam.Instance.UserLoginRequired && !UserInterAction.DoLoginRequest())
-            return;
+          
           Form1 form1 = new Form1();
-          form1.SetCommToken(OtaParam.Instance.Account.CommToken);
           Application.Run((Form) form1.EnableDataCollection());
         }
       }

@@ -738,7 +738,6 @@ namespace MainForms
 
     private void InitFormCustom()
     {
-      UserInterAction.MultiSessions = false;
       this.lableOption = this.labelSelectedFwOption;
       this.comboBoxOption = this.comboBoxSelectedFwOption;
       this.labelSelectedFwStep.Visible = false;
@@ -893,7 +892,6 @@ namespace MainForms
         this.InitFormCustom();
         this.detector = new MyDevice(new MyDevice.OnDeviceChangedDelegate(this.OnDeviceChanged), (Control) this);
         this.detector.StartDetectDevice();
-        UserInterAction.Owner = (IWin32Window) this;
         DevMsg.Instance.RegisterHidNotification(this.Handle);
       }
       catch (Exception ex)
@@ -1293,24 +1291,7 @@ namespace MainForms
 
     private void SetUserInteractions()
     {
-      this.doAuthenticationDelegate = new AcquireAuthenticationDelegate(UserInterAction.AcquireAuthentication);
-      Form1.SetCallBackDoAuthentication((MulticastDelegate) this.doAuthenticationDelegate);
-      this.showWarningDialogDelegate = new ShowWarningDialogDelegate(UserInterAction.ShowWarningDialog);
-      Form1.SetCallBackShowWarningDialog((MulticastDelegate) this.showWarningDialogDelegate);
-      this.showEnterSpcDialogDelegate = new ShowEnterSpcDialogDelegate(UserInterAction.ShowEnterSpcDialog);
-      Form1.SetCallBackShowEnterSpcDialog((MulticastDelegate) this.showEnterSpcDialogDelegate);
-      this.showReEnterSpcDialogDelegate = new ShowReEnterSpcDialogDelegate(UserInterAction.ShowReEnterSpcDialog);
-      Form1.SetCallBackShowReEnterSpcDialog((MulticastDelegate) this.showReEnterSpcDialogDelegate);
-      this.showModelWarningDialogDelegate = new ShowModelWarningDialogDelegate(UserInterAction.ShowModelWarningDialog);
-      Form1.SetCallBackShowModelWarningDialog((MulticastDelegate) this.showModelWarningDialogDelegate);
-      this.showModelSelectSkuIdDialogDelegate = new ShowModelSelectSkuIdDialogDelegate(UserInterAction.ShowModelSelectSkuIdDialog);
-      Form1.SetCallBackShowModelSelectSKUIdDialog((MulticastDelegate) this.showModelSelectSkuIdDialogDelegate);
-      this.doReportServiceResultDelegate = new DoReportServiceResultDelegate(UserInterAction.DoReportServiceResult);
-      Form1.SetCallBackDoReportServiceResult((MulticastDelegate) this.doReportServiceResultDelegate);
-      this.queryServerSimUnlockCode = new QueryServerSimUnlockCode(UserInterAction.QueryServerSimUnlockCode);
-      Form1.SetCallBackQueryServerSimUnlockCode((MulticastDelegate) this.queryServerSimUnlockCode);
-      this.deleteServerSimUnlockCode = new DeleteServerSimUnlockCode(UserInterAction.DeleteServerSimUnlockCode);
-      Form1.SetCallBackDeleteServerSimUnlockCode((MulticastDelegate) this.deleteServerSimUnlockCode);
+      
     }
 
     private void JudgeProduct(string imagePath, TextBox textBox)
@@ -1333,8 +1314,6 @@ namespace MainForms
         this.ShowErrorMessage(result, message.ToString());
       }
     }
-
-    public void SetCommToken(string commToken) => UserInterAction.CommToken = commToken;
 
     private void textBoxSelectedFw_TextChanged(object sender, EventArgs e)
     {

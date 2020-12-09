@@ -189,8 +189,8 @@ namespace Utils
 
     public static bool HasPhoneInfoOptionGroupSimLock()
     {
-      if (Product.sharedProduct.ImgSecurityVersion >= 8U && !STSLicense.isEnableRoot())
-        return false;
+      //if (Product.sharedProduct.ImgSecurityVersion >= 8U && !STSLicense.isEnableRoot())
+       // return false;
       foreach (string key in OstOption.m_OstOptionDic.Keys)
       {
         if (OstOption.m_OstOptionDic[key].Group == UserPermissionGroup.RD_SIM_LOCK && OstOption.m_OstOptionDic[key].Enable)
