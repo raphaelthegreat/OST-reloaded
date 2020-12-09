@@ -23,7 +23,7 @@ namespace Params
     private Profile config;
     private Profile custom;
     private string launchTime;
-    protected string bundledImage;
+    protected string bundledImage = "";
     private bool autoTest;
     private int autoTestCount;
     private Profile autoTestProfile;
@@ -107,6 +107,9 @@ namespace Params
 
     private void SearchBundledImage()
     {
+      if (String.IsNullOrEmpty(this.bundledImage))
+        return;
+
       if (File.Exists(Path.GetFullPath(this.bundledImage)))
         this.bundledImage = Path.GetFullPath(this.bundledImage);
       else if (File.Exists(Path.Combine(this.toolFolder, this.bundledImage)))
