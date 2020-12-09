@@ -1102,7 +1102,10 @@ namespace MainForms
     private List<string> GetOptionList()
     {
       List<string> stringList = new List<string>();
-      if (this.product.ImgSecurityVersion >= 8U && !STSLicense.isEnableRoot() || this.product == null)
+      if (this.product == null)
+        return stringList;
+
+      if (this.product.ImgSecurityVersion >= 8U && !STSLicense.isEnableRoot())
         return stringList;
       string text1 = Locale.Instance.LoadCombinedText("SELECTED_FW_OPTION_0");
       if (this.product.HasUserOption(this.GetOptionValue(text1)) && OstOption.HasOption("NormalDownload"))
