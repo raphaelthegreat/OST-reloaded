@@ -54,7 +54,7 @@ namespace OnlineUpdateTool
           }
           
           Form1 form1 = new Form1();
-          Application.Run((Form) form1.EnableDataCollection());
+          Application.Run((Form) form1);
         }
       }
       catch (Exception ex)

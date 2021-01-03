@@ -4,14 +4,12 @@
 // MVID: EA27343A-8B18-4C76-B602-BBE3AEAD61D6
 // Assembly location: C:\Program Files (x86)\OST LA\OnlineUpdateTool.exe
 
-using DataCollection.DataFileCache;
 using Deployment;
 using Devices;
 using ErrorDef;
 using Framework.Controls;
 using HookKeyboards;
 using Locales;
-using MRG.Controls.UI;
 using MyCommonFunction;
 using MyResources.Properties;
 using PageControl;
@@ -91,7 +89,7 @@ namespace MainForms
     private ComboBox comboBoxOnlineFwNewVersion;
     private Label labelOnlineFwModelTag;
     private Label labelOnlineFwModel;
-    private LoadingCircle loadingCircleOnlineFwStatus;
+    //private LoadingCircle loadingCircleOnlineFwStatus;
     private Button btnOnlineFw;
     private Label labelOnlineFwStep;
     private Button btnPhoneKeyInfo;
@@ -159,7 +157,7 @@ namespace MainForms
       this.tabPageOnlineFw = new TabPage();
       this.labelOnlineFwStep = new Label();
       this.btnOnlineFw = new Button();
-      this.loadingCircleOnlineFwStatus = new LoadingCircle();
+      //this.loadingCircleOnlineFwStatus = new LoadingCircle();
       this.labelOnlineFwModel = new Label();
       this.labelOnlineFwModelTag = new Label();
       this.comboBoxOnlineFwNewVersion = new ComboBox();
@@ -417,7 +415,7 @@ namespace MainForms
       this.tabPageOnlineFw.BackgroundImageLayout = ImageLayout.Zoom;
       this.tabPageOnlineFw.Controls.Add((Control) this.labelOnlineFwStep);
       this.tabPageOnlineFw.Controls.Add((Control) this.btnOnlineFw);
-      this.tabPageOnlineFw.Controls.Add((Control) this.loadingCircleOnlineFwStatus);
+      //this.tabPageOnlineFw.Controls.Add((Control) this.loadingCircleOnlineFwStatus);
       this.tabPageOnlineFw.Controls.Add((Control) this.labelOnlineFwModel);
       this.tabPageOnlineFw.Controls.Add((Control) this.labelOnlineFwModelTag);
       this.tabPageOnlineFw.Controls.Add((Control) this.comboBoxOnlineFwNewVersion);
@@ -451,7 +449,7 @@ namespace MainForms
       this.btnOnlineFw.TabIndex = 17;
       this.btnOnlineFw.Text = "...";
       this.btnOnlineFw.UseVisualStyleBackColor = true;
-      this.loadingCircleOnlineFwStatus.Active = false;
+      /*this.loadingCircleOnlineFwStatus.Active = false;
       this.loadingCircleOnlineFwStatus.BackColor = Color.Transparent;
       this.loadingCircleOnlineFwStatus.Color = Color.DarkGray;
       this.loadingCircleOnlineFwStatus.ForeColor = SystemColors.HotTrack;
@@ -465,7 +463,7 @@ namespace MainForms
       this.loadingCircleOnlineFwStatus.SpokeThickness = 2;
       this.loadingCircleOnlineFwStatus.StylePreset = LoadingCircle.StylePresets.MacOSX;
       this.loadingCircleOnlineFwStatus.TabIndex = 16;
-      this.loadingCircleOnlineFwStatus.Text = "loadingCircle";
+      this.loadingCircleOnlineFwStatus.Text = "loadingCircle";*/
       this.labelOnlineFwModel.AutoSize = true;
       this.labelOnlineFwModel.Location = new Point(296, 139);
       this.labelOnlineFwModel.Name = "labelOnlineFwModel";
@@ -1440,49 +1438,6 @@ namespace MainForms
     [DllImport("MobileFlashDll.dll")]
     private static extern int SwitchDeviceMode(string sessionId, string deviceId, int deviceMode);
 
-    public Form1 EnableDataCollection()
-    {
-      this.timerDataCollection = new Timer(this.components);
-      this.timerDataCollection.Interval = 15000;
-      this.timerDataCollection.Tick += new EventHandler(this.timerDataCollection_Tick);
-      this.timerDataCollection.Enabled = true;
-      return this;
-    }
-
-    private void timerSendLog_Tick(object sender, EventArgs e)
-    {
-      try
-      {
-        LogQueue instance = LogQueue.Instance;
-        instance.RefershQueue();
-        while (instance.Available)
-        {
-          CollectionFile availableFile = instance.GetAvailableFile();
-          new OtaSendLogTaskEx(new OtaSendLogTaskEx.OnOtaSendLogTaskCompletedDelegate(this.OnSendLogCompleted)).StartTask(availableFile);
-          CLogs.I(string.Format("Send Update Log {0}...", (object) availableFile));
-        }
-      }
-      catch (Exception ex)
-      {
-        CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
-      }
-    }
-
-    private void OnSendLogCompleted(CollectionFile file)
-    {
-      LogQueue instance = LogQueue.Instance;
-      if (file.Done)
-      {
-        CLogs.I(string.Format("Send Update Log {0} success.", (object) file));
-        instance.Remove(file);
-      }
-      else
-      {
-        CLogs.I(string.Format("Send Update Log {0} fails.", (object) file));
-        instance.Requeue(file);
-      }
-    }
-
     private bool IsNetworkDeployed
     {
       get
@@ -1661,39 +1616,5 @@ namespace MainForms
       string sessionId,
       string deviceId,
       StringBuilder stringBuilder);
-
-    private void timerDataCollection_Tick(object sender, EventArgs e)
-    {
-      try
-      {
-        CollectionQueue instance = CollectionQueue.Instance;
-        instance.RefershQueue();
-        while (instance.Available)
-        {
-          CollectionFile availableFile = instance.GetAvailableFile();
-          new DataUploadTask(new DataUploadTask.OnTaskCompletedDelegate(this.OnDataUploadCompleted)).StartTask(availableFile);
-          CLogs.I(string.Format("Uploading collection data {0}...", (object) availableFile));
-        }
-      }
-      catch (Exception ex)
-      {
-        CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
-      }
-    }
-
-    private void OnDataUploadCompleted(CollectionFile file)
-    {
-      CollectionQueue instance = CollectionQueue.Instance;
-      if (file.Done)
-      {
-        CLogs.I(string.Format("Upload collection data {0} success.", (object) file));
-        instance.Remove(file);
-      }
-      else
-      {
-        CLogs.I(string.Format("Upload collection data {0} fails.", (object) file));
-        instance.Requeue(file);
-      }
-    }
   }
 }

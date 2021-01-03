@@ -1,8 +1,9 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineUpdateTool", "OnlineUpdateTool.csproj", "{ECB2468E-57D5-45DC-9271-11A069C8D079}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineUpdateTool", "OnlineUpdateTool.csproj", "{B8C5AE76-BA56-4002-A3F2-38C4F8260170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +11,15 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ECB2468E-57D5-45DC-9271-11A069C8D079}.Debug|x86.ActiveCfg = Debug|x86
-		{ECB2468E-57D5-45DC-9271-11A069C8D079}.Debug|x86.Build.0 = Debug|x86
-		{ECB2468E-57D5-45DC-9271-11A069C8D079}.Release|x86.ActiveCfg = Release|x86
-		{ECB2468E-57D5-45DC-9271-11A069C8D079}.Release|x86.Build.0 = Release|x86
+		{B8C5AE76-BA56-4002-A3F2-38C4F8260170}.Debug|x86.ActiveCfg = Debug|x86
+		{B8C5AE76-BA56-4002-A3F2-38C4F8260170}.Debug|x86.Build.0 = Debug|x86
+		{B8C5AE76-BA56-4002-A3F2-38C4F8260170}.Release|x86.ActiveCfg = Release|x86
+		{B8C5AE76-BA56-4002-A3F2-38C4F8260170}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {23224105-A076-4E40-8E4A-34BABF3F530A}
+		SolutionGuid = {5853D190-2133-40CE-B013-94AED0DC61D2}
 	EndGlobalSection
 EndGlobal

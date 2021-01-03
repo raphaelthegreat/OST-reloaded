@@ -4,7 +4,6 @@
 // MVID: EA27343A-8B18-4C76-B602-BBE3AEAD61D6
 // Assembly location: C:\Program Files (x86)\OST LA\OnlineUpdateTool.exe
 
-using ICSharpCode.SharpZipLib.Zip;
 using System.IO;
 
 namespace Utils
@@ -13,7 +12,7 @@ namespace Utils
   {
     public static void UnZipFiles(string zipFile, string toFolder)
     {
-      if (!Directory.Exists(toFolder))
+      /*if (!Directory.Exists(toFolder))
         Directory.CreateDirectory(toFolder);
       using (ZipInputStream zipInputStream = new ZipInputStream((Stream) File.OpenRead(zipFile)))
       {
@@ -34,12 +33,12 @@ namespace Utils
           else
             Directory.CreateDirectory(path);
         }
-      }
+      }*/
     }
 
     public static void UnZipFile(string zipFile, int index, string toFile, Progress progress)
     {
-      if (!Directory.Exists(Path.GetDirectoryName(toFile)))
+      /*if (!Directory.Exists(Path.GetDirectoryName(toFile)))
         Directory.CreateDirectory(Path.GetDirectoryName(toFile));
       using (ZipInputStream zipInputStream = new ZipInputStream((Stream) File.OpenRead(zipFile)))
       {
@@ -61,7 +60,7 @@ namespace Utils
             }
           }
         }
-      }
+      }*/
     }
   }
 }
