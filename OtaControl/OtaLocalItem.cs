@@ -9,21 +9,21 @@ using Locales;
 
 namespace OtaControl
 {
-  public class OtaLocalItem : OtaItem
-  {
-    private bool showModel;
-
-    public OtaLocalItem(ImageItem item)
-      : base(new OtaData(item.Item))
-      => this.item.Set(nameof (FilePath), item.FilePath);
-
-    public string FilePath => this.item.Get(nameof (FilePath));
-
-    public bool ShowModel
+    public class OtaLocalItem : OtaItem
     {
-      set => this.showModel = value;
-    }
+        private bool showModel;
 
-    public override string ToString() => this.showModel ? string.Format("{0} ({1}, {2})", (object) base.ToString(), (object) Locale.Instance.LoadText("ONLINE_LOCAL_TAG"), (object) this.DisplayModel) : string.Format("{0} ({1})", (object) base.ToString(), (object) Locale.Instance.LoadText("ONLINE_LOCAL_TAG"));
-  }
+        public OtaLocalItem(ImageItem item)
+          : base(new OtaData(item.Item))
+          => this.item.Set(nameof(FilePath), item.FilePath);
+
+        public string FilePath => this.item.Get(nameof(FilePath));
+
+        public bool ShowModel
+        {
+            set => this.showModel = value;
+        }
+
+        public override string ToString() => this.showModel ? string.Format("{0} ({1}, {2})", (object)base.ToString(), (object)Locale.Instance.LoadText("ONLINE_LOCAL_TAG"), (object)this.DisplayModel) : string.Format("{0} ({1})", (object)base.ToString(), (object)Locale.Instance.LoadText("ONLINE_LOCAL_TAG"));
+    }
 }

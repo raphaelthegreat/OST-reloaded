@@ -9,40 +9,40 @@ using System.Windows.Forms;
 
 namespace PageControl
 {
-  internal class PageFlow
-  {
-    private List<TabPage> tabPageList;
-
-    public PageFlow(TabPage[] tabPages)
+    internal class PageFlow
     {
-      this.tabPageList = new List<TabPage>(tabPages.Length);
-      foreach (TabPage tabPage in tabPages)
-        this.tabPageList.Add(tabPage);
+        private List<TabPage> tabPageList;
+
+        public PageFlow(TabPage[] tabPages)
+        {
+            this.tabPageList = new List<TabPage>(tabPages.Length);
+            foreach (TabPage tabPage in tabPages)
+                this.tabPageList.Add(tabPage);
+        }
+
+        public TabPage NextPageOf(TabPage tabPage)
+        {
+            int num = this.tabPageList.IndexOf(tabPage);
+            return num != -1 && num != this.tabPageList.Count - 1 ? this.tabPageList[num + 1] : tabPage;
+        }
+
+        public TabPage PrevPageOf(TabPage tabPage)
+        {
+            int num = this.tabPageList.IndexOf(tabPage);
+            switch (num)
+            {
+                case -1:
+                case 0:
+                    return tabPage;
+                default:
+                    return this.tabPageList[num - 1];
+            }
+        }
+
+        public TabPage FirstPage => this.tabPageList[0];
+
+        public TabPage FinalPage => this.tabPageList[this.tabPageList.Count - 1];
+
+        public List<TabPage> Pages => this.tabPageList;
     }
-
-    public TabPage NextPageOf(TabPage tabPage)
-    {
-      int num = this.tabPageList.IndexOf(tabPage);
-      return num != -1 && num != this.tabPageList.Count - 1 ? this.tabPageList[num + 1] : tabPage;
-    }
-
-    public TabPage PrevPageOf(TabPage tabPage)
-    {
-      int num = this.tabPageList.IndexOf(tabPage);
-      switch (num)
-      {
-        case -1:
-        case 0:
-          return tabPage;
-        default:
-          return this.tabPageList[num - 1];
-      }
-    }
-
-    public TabPage FirstPage => this.tabPageList[0];
-
-    public TabPage FinalPage => this.tabPageList[this.tabPageList.Count - 1];
-
-    public List<TabPage> Pages => this.tabPageList;
-  }
 }

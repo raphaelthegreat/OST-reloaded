@@ -11,41 +11,41 @@ using System.Collections.Generic;
 
 namespace Utils
 {
-  internal class functionObject
-  {
-    public Dictionary<string, object> functions;
-    private static string sSession = Guid.NewGuid().ToString();
-    public string name;
-    public string status;
-    public Dictionary<string, object> extraInfo;
-
-    public functionObject(string jsonString)
+    internal class functionObject
     {
-      this.name = "";
-      this.status = "";
-      this.functions = new Dictionary<string, object>();
-      this.loadJsonString(jsonString);
-    }
+        public Dictionary<string, object> functions;
+        private static string sSession = Guid.NewGuid().ToString();
+        public string name;
+        public string status;
+        public Dictionary<string, object> extraInfo;
 
-    public void loadJsonString(string jsonString)
-    {
-      try
-      {
-        JObject jobject = jsonString.Length != 0 ? JObject.Parse(jsonString) : throw new CException("[functionObject] Load empty json string fail!");
-        if (jobject["session"] != null)
-          this.status = jobject["session"].ToString();
-        if (jobject["name"] != null)
-          this.name = jobject["name"].ToString();
-        if (jobject["status"] != null)
-          this.status = jobject["status"].ToString();
-        if (jobject["extraInfo"] == null)
-          return;
-        this.extraInfo = JsonConvert.DeserializeObject<Dictionary<string, object>>(jobject["extraInfo"].ToString());
-      }
-      catch (Exception ex)
-      {
-        throw ex;
-      }
+        public functionObject(string jsonString)
+        {
+            this.name = "";
+            this.status = "";
+            this.functions = new Dictionary<string, object>();
+            this.loadJsonString(jsonString);
+        }
+
+        public void loadJsonString(string jsonString)
+        {
+            try
+            {
+                JObject jobject = jsonString.Length != 0 ? JObject.Parse(jsonString) : throw new CException("[functionObject] Load empty json string fail!");
+                if (jobject["session"] != null)
+                    this.status = jobject["session"].ToString();
+                if (jobject["name"] != null)
+                    this.name = jobject["name"].ToString();
+                if (jobject["status"] != null)
+                    this.status = jobject["status"].ToString();
+                if (jobject["extraInfo"] == null)
+                    return;
+                this.extraInfo = JsonConvert.DeserializeObject<Dictionary<string, object>>(jobject["extraInfo"].ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
-  }
 }

@@ -6,27 +6,27 @@
 
 namespace ImageControl.ImageLoader
 {
-  public class ImageInformationEntity
-  {
-    public string version;
-    public string subVersion;
-    public string imageId;
-    public string channelId;
-    public string operatorId;
-    public string internalModel;
-    public string externalModel;
-    public string externalVersion;
-    public string cdaVersion;
-    public string securityVersion;
-    public string hasBackupNvOption;
-    public string hasEraseUserDataOption;
-    public string hasEraseBoxDataOption;
-    public string hasCustomerSKUIDOption;
-    public string hasNativeOption;
-    public string hasNativeFormatOption;
-    public string hasEraseFrpOption;
-    public string hasUFSProvisionOption;
-    public string hasUnlockScreenLockOption;
-    public string hasCollectAprLogOption;
-  }
+    public class ImageInformationEntity
+    {
+        public string version;
+        public string subVersion;
+        public string imageId;
+        public string channelId;
+        public string operatorId;
+        public string internalModel;
+        public string externalModel;
+        public string externalVersion;
+        public string cdaVersion;
+        public string securityVersion;
+        public string hasBackupNvOption;
+        public string hasEraseUserDataOption;
+        public string hasEraseBoxDataOption;
+        public string hasCustomerSKUIDOption;
+        public string hasNativeOption;
+        public string hasNativeFormatOption;
+        public string hasEraseFrpOption;
+        public string hasUFSProvisionOption;
+        public string hasUnlockScreenLockOption;
+        public string hasCollectAprLogOption;
+    }
 }

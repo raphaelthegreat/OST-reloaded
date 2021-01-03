@@ -8,26 +8,26 @@ using System.Collections.Specialized;
 
 namespace Products
 {
-  internal class ProductQ6 : ProductFastboot
-  {
-    public override long StartUpdate(
-      string sessionId,
-      string imagePath,
-      string deviceId,
-      int option)
+    internal class ProductQ6 : ProductFastboot
     {
-      ++this.runCount;
-      return (long) Product.EmergencyUpdateSoftware(sessionId, this.GetUserOptions(option));
-    }
+        public override long StartUpdate(
+          string sessionId,
+          string imagePath,
+          string deviceId,
+          int option)
+        {
+            ++this.runCount;
+            return (long)Product.EmergencyUpdateSoftware(sessionId, this.GetUserOptions(option));
+        }
 
-    public override bool HasUserOption(ProductOptions option) => option == ProductOptions.NATIVE_UPDATE_PROCESS && this.toolParam.Option.NativeUpdate || option == ProductOptions.NATIVE_ERASE_UPDATE_PROCESS && this.toolParam.Option.EraseUserData && this.toolParam.Option.NativeUpdate || (option == ProductOptions.UNLOCK_SCREEN_LOCK && this.toolParam.Option.UnlockScreenLock || option == ProductOptions.COLLECT_APR_LOG && this.toolParam.Option.CollectAprLog);
+        public override bool HasUserOption(ProductOptions option) => option == ProductOptions.NATIVE_UPDATE_PROCESS && this.toolParam.Option.NativeUpdate || option == ProductOptions.NATIVE_ERASE_UPDATE_PROCESS && this.toolParam.Option.EraseUserData && this.toolParam.Option.NativeUpdate || (option == ProductOptions.UNLOCK_SCREEN_LOCK && this.toolParam.Option.UnlockScreenLock || option == ProductOptions.COLLECT_APR_LOG && this.toolParam.Option.CollectAprLog);
 
-    public override uint GetUserOptions(int option)
-    {
-      BitVector32 bitVector32 = new BitVector32(0);
-      int mask = BitVector32.CreateMask();
-      bitVector32[mask] = this.IsDownloadOption(option, ProductOptions.NATIVE_ERASE_UPDATE_PROCESS);
-      return (uint) bitVector32.Data;
+        public override uint GetUserOptions(int option)
+        {
+            BitVector32 bitVector32 = new BitVector32(0);
+            int mask = BitVector32.CreateMask();
+            bitVector32[mask] = this.IsDownloadOption(option, ProductOptions.NATIVE_ERASE_UPDATE_PROCESS);
+            return (uint)bitVector32.Data;
+        }
     }
-  }
 }

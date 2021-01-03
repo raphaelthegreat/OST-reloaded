@@ -6,7 +6,7 @@
 
 namespace UserForms
 {
-  public delegate bool ShowModelSelectSkuIdDialogDelegate(
+    public delegate bool ShowModelSelectSkuIdDialogDelegate(
     string sessionId,
     string information,
     string defaultSKUID,

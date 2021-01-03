@@ -11,61 +11,61 @@ using Utils;
 
 namespace Deployment
 {
-  internal class DeploymentTask
-  {
-    private BackgroundWorker worker;
-    private DeploymentTask.OnTaskCompletedDelegate taskCompletedDelegate;
-
-    public bool IsBusy => this.worker.IsBusy;
-
-    public DeploymentTask(DeploymentTask.OnTaskCompletedDelegate tcDelegate)
+    internal class DeploymentTask
     {
-      this.taskCompletedDelegate = tcDelegate;
-      this.worker = new BackgroundWorker();
-      this.worker.WorkerSupportsCancellation = false;
-      this.worker.DoWork += new DoWorkEventHandler(this.DoWork);
-      this.worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.RunWorkerCompleted);
+        private BackgroundWorker worker;
+        private DeploymentTask.OnTaskCompletedDelegate taskCompletedDelegate;
+
+        public bool IsBusy => this.worker.IsBusy;
+
+        public DeploymentTask(DeploymentTask.OnTaskCompletedDelegate tcDelegate)
+        {
+            this.taskCompletedDelegate = tcDelegate;
+            this.worker = new BackgroundWorker();
+            this.worker.WorkerSupportsCancellation = false;
+            this.worker.DoWork += new DoWorkEventHandler(this.DoWork);
+            this.worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.RunWorkerCompleted);
+        }
+
+        public void StartTask() => this.worker.RunWorkerAsync();
+
+        private void DoWork(object sender, DoWorkEventArgs e)
+        {
+            string empty = string.Empty;
+            Sessions.AddChildThread(empty);
+            try
+            {
+                e.Result = (object)DeployCache.Instance.DownloadFiles();
+            }
+            catch (CException ex)
+            {
+                e.Result = (object)ex.CResult;
+                CLogs.W("Catch exception - " + ex.Message + ex.StackTrace);
+            }
+            catch (Exception ex)
+            {
+                e.Result = (object)1064L;
+                CLogs.W("Catch exception - " + ex.Message + ex.StackTrace);
+            }
+            finally
+            {
+                Sessions.RemoveChildThread(empty);
+            }
+        }
+
+        private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                if (this.taskCompletedDelegate == null)
+                    return;
+                this.taskCompletedDelegate((long)e.Result);
+            }
+            catch
+            {
+            }
+        }
+
+        public delegate void OnTaskCompletedDelegate(long result);
     }
-
-    public void StartTask() => this.worker.RunWorkerAsync();
-
-    private void DoWork(object sender, DoWorkEventArgs e)
-    {
-      string empty = string.Empty;
-      Sessions.AddChildThread(empty);
-      try
-      {
-        e.Result = (object) DeployCache.Instance.DownloadFiles();
-      }
-      catch (CException ex)
-      {
-        e.Result = (object) ex.CResult;
-        CLogs.W("Catch exception - " + ex.Message + ex.StackTrace);
-      }
-      catch (Exception ex)
-      {
-        e.Result = (object) 1064L;
-        CLogs.W("Catch exception - " + ex.Message + ex.StackTrace);
-      }
-      finally
-      {
-        Sessions.RemoveChildThread(empty);
-      }
-    }
-
-    private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-    {
-      try
-      {
-        if (this.taskCompletedDelegate == null)
-          return;
-        this.taskCompletedDelegate((long) e.Result);
-      }
-      catch (Exception ex)
-      {
-      }
-    }
-
-    public delegate void OnTaskCompletedDelegate(long result);
-  }
 }

@@ -8,17 +8,17 @@ using System.Collections.Generic;
 
 namespace Utils
 {
-  internal class FtmResponse
-  {
-    public string apiStatus;
-    public string errMsg;
-    public Dictionary<string, string> listKeyValueParis;
-
-    public FtmResponse()
+    internal class FtmResponse
     {
-      this.apiStatus = "NONE";
-      this.errMsg = "";
-      this.listKeyValueParis = new Dictionary<string, string>();
+        public string apiStatus;
+        public string errMsg;
+        public Dictionary<string, string> listKeyValueParis;
+
+        public FtmResponse()
+        {
+            this.apiStatus = "NONE";
+            this.errMsg = "";
+            this.listKeyValueParis = new Dictionary<string, string>();
+        }
     }
-  }
 }

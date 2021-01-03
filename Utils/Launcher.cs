@@ -10,19 +10,19 @@ using System.Security.Principal;
 
 namespace Utils
 {
-  internal class Launcher
-  {
-    public static void LaunchProcess(string path) => Launcher.LaunchProcess(path, string.Empty);
-
-    public static void LaunchProcess(string path, string arguments) => Process.Start(new ProcessStartInfo()
+    internal class Launcher
     {
-      UseShellExecute = true,
-      WorkingDirectory = Path.GetDirectoryName(path),
-      FileName = path,
-      Arguments = arguments,
-      Verb = Launcher.IsAdmin() ? "open" : "runas"
-    });
+        public static void LaunchProcess(string path) => Launcher.LaunchProcess(path, string.Empty);
 
-    private static bool IsAdmin() => new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
-  }
+        public static void LaunchProcess(string path, string arguments) => Process.Start(new ProcessStartInfo()
+        {
+            UseShellExecute = true,
+            WorkingDirectory = Path.GetDirectoryName(path),
+            FileName = path,
+            Arguments = arguments,
+            Verb = Launcher.IsAdmin() ? "open" : "runas"
+        });
+
+        private static bool IsAdmin() => new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
+    }
 }

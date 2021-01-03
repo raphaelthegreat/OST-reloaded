@@ -6,15 +6,15 @@
 
 namespace Locales
 {
-  internal class LocaleNull : Locale
-  {
-    public LocaleNull()
-      : base("", "")
+    internal class LocaleNull : Locale
     {
+        public LocaleNull()
+          : base("", "")
+        {
+        }
+
+        public override string LoadText(string localeId) => localeId;
+
+        public override string LoadCombinedText(string localeId) => localeId;
     }
-
-    public override string LoadText(string localeId) => localeId;
-
-    public override string LoadCombinedText(string localeId) => localeId;
-  }
 }

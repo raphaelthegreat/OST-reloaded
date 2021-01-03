@@ -9,62 +9,62 @@ using Utils;
 
 namespace OtaControl
 {
-  public class OtaService
-  {
-    private OtaData service;
-    private double timeout;
-
-    public OtaData Service
+    public class OtaService
     {
-      set => this.service = value;
-      get => this.service;
-    }
+        private OtaData service;
+        private double timeout;
 
-    public OtaService() => this.service = new OtaData();
+        public OtaData Service
+        {
+            set => this.service = value;
+            get => this.service;
+        }
 
-    public OtaService(string fileHandlerUrl, string loginUrl, string swImageUrl, string logUrl) => this.service = new OtaData().Set(nameof (FileHandler), fileHandlerUrl).Set(nameof (Login), loginUrl).Set(nameof (SWImage), swImageUrl).Set(nameof (Log), logUrl);
+        public OtaService() => this.service = new OtaData();
 
-    public OtaService(OtaData service) => this.service = service;
+        public OtaService(string fileHandlerUrl, string loginUrl, string swImageUrl, string logUrl) => this.service = new OtaData().Set(nameof(FileHandler), fileHandlerUrl).Set(nameof(Login), loginUrl).Set(nameof(SWImage), swImageUrl).Set(nameof(Log), logUrl);
 
-    public OtaService(OtaService from) => this.service = new OtaData(from.service);
+        public OtaService(OtaData service) => this.service = service;
 
-    public bool Enabled => !string.IsNullOrEmpty(this.FileHandler) && !string.IsNullOrEmpty(this.Login) && !string.IsNullOrEmpty(this.SWImage);
+        public OtaService(OtaService from) => this.service = new OtaData(from.service);
 
-    public string FileHandler => this.service.Get(nameof (FileHandler));
+        public bool Enabled => !string.IsNullOrEmpty(this.FileHandler) && !string.IsNullOrEmpty(this.Login) && !string.IsNullOrEmpty(this.SWImage);
 
-    public string Login => this.service.Get(nameof (Login));
+        public string FileHandler => this.service.Get(nameof(FileHandler));
 
-    public string SWImage => this.service.Get(nameof (SWImage));
+        public string Login => this.service.Get(nameof(Login));
 
-    public string Log => this.service.Get(nameof (Log));
+        public string SWImage => this.service.Get(nameof(SWImage));
 
-    public double TimeoutLimit => !this.service.Contain(nameof (TimeoutLimit)) ? double.MaxValue : double.Parse(this.service.Get(nameof (TimeoutLimit)));
+        public string Log => this.service.Get(nameof(Log));
 
-    public double Timeout
-    {
-      set => this.timeout = value;
-    }
+        public double TimeoutLimit => !this.service.Contain(nameof(TimeoutLimit)) ? double.MaxValue : double.Parse(this.service.Get(nameof(TimeoutLimit)));
 
-    public bool Available => this.timeout < this.TimeoutLimit;
+        public double Timeout
+        {
+            set => this.timeout = value;
+        }
 
-    public override bool Equals(object obj) => obj is OtaService otaService && this.FileHandler.Equals(otaService.FileHandler) && (this.Login.Equals(otaService.Login) && this.SWImage.Equals(otaService.SWImage)) && this.Log.Equals(otaService.Log);
+        public bool Available => this.timeout < this.TimeoutLimit;
 
-    public override int GetHashCode() => (int) Crc32.Compute(Encoding.ASCII.GetBytes(string.Join("", new string[4]
-    {
+        public override bool Equals(object obj) => obj is OtaService otaService && this.FileHandler.Equals(otaService.FileHandler) && (this.Login.Equals(otaService.Login) && this.SWImage.Equals(otaService.SWImage)) && this.Log.Equals(otaService.Log);
+
+        public override int GetHashCode() => (int)Crc32.Compute(Encoding.ASCII.GetBytes(string.Join("", new string[4]
+        {
       this.FileHandler,
       this.Login,
       this.SWImage,
       this.Log
-    })));
+        })));
 
-    public override string ToString()
-    {
-      StringBuilder stringBuilder = new StringBuilder("{ ", 1024);
-      stringBuilder.Append("{ FileHandler: ").Append(this.FileHandler).Append(" }, ");
-      stringBuilder.Append("{ Login: ").Append(this.Login).Append(" }, ");
-      stringBuilder.Append("{ SWImage: ").Append(this.SWImage).Append(" },");
-      stringBuilder.Append("{ Log: ").Append(this.Log).Append(" }");
-      return stringBuilder.Append(" }").ToString();
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder("{ ", 1024);
+            stringBuilder.Append("{ FileHandler: ").Append(this.FileHandler).Append(" }, ");
+            stringBuilder.Append("{ Login: ").Append(this.Login).Append(" }, ");
+            stringBuilder.Append("{ SWImage: ").Append(this.SWImage).Append(" },");
+            stringBuilder.Append("{ Log: ").Append(this.Log).Append(" }");
+            return stringBuilder.Append(" }").ToString();
+        }
     }
-  }
 }

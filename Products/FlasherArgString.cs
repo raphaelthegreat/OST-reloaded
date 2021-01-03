@@ -6,10 +6,10 @@
 
 namespace Products
 {
-  internal enum FlasherArgString
-  {
-    PARAM_LAUNCH_TIME = 241, // 0x000000F1
-    PARAM_USER_TEMP_PATH = 242, // 0x000000F2
-    PARAM_DATA_CACHE_PATH = 243, // 0x000000F3
-  }
+    internal enum FlasherArgString
+    {
+        PARAM_LAUNCH_TIME = 241, // 0x000000F1
+        PARAM_USER_TEMP_PATH = 242, // 0x000000F2
+        PARAM_DATA_CACHE_PATH = 243, // 0x000000F3
+    }
 }

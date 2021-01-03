@@ -6,10 +6,10 @@
 
 namespace Params
 {
-  internal class ParamRD : ToolParam
-  {
-    public ParamRD() => this.optionFilter = new OptionFilter(true, true, true, true, true, true, true, true, true, true, (ToolParam) this);
+    internal class ParamRD : ToolParam
+    {
+        public ParamRD() => this.optionFilter = new OptionFilter(true, true, true, true, true, true, true, true, true, true, (ToolParam)this);
 
-    public override bool UpdateCounter => true;
-  }
+        public override bool UpdateCounter => true;
+    }
 }

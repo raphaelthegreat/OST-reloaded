@@ -8,25 +8,25 @@ using System;
 
 namespace Utils
 {
-  public class UsbEvent
-  {
-    public string sDevEventType = "";
-    public string sUsbAddress = "";
-    public string sDeviceVidPid = "";
-    public string sDevicePath = "";
-    public DateTime dtLastUpdateTime = new DateTime();
-    public bool bRunTest;
-
-    public UsbEvent()
+    public class UsbEvent
     {
-      this.sDevEventType = "";
-      this.sUsbAddress = "";
-      this.sDeviceVidPid = "";
-      this.sDevicePath = "";
-      this.dtLastUpdateTime = new DateTime();
-      this.bRunTest = false;
-    }
+        public string sDevEventType = "";
+        public string sUsbAddress = "";
+        public string sDeviceVidPid = "";
+        public string sDevicePath = "";
+        public DateTime dtLastUpdateTime = new DateTime();
+        public bool bRunTest;
 
-    public override string ToString() => string.Format("Type={0}", (object) this.sDevEventType) + "," + string.Format("Dev_VidPid={0}", (object) this.sDeviceVidPid) + "," + string.Format("USB_Address={0}", (object) this.sUsbAddress) + "," + string.Format("Time={0:00}:{1:00}:{2:00}::{3:000}", (object) this.dtLastUpdateTime.Hour, (object) this.dtLastUpdateTime.Minute, (object) this.dtLastUpdateTime.Second, (object) this.dtLastUpdateTime.Millisecond);
-  }
+        public UsbEvent()
+        {
+            this.sDevEventType = "";
+            this.sUsbAddress = "";
+            this.sDeviceVidPid = "";
+            this.sDevicePath = "";
+            this.dtLastUpdateTime = new DateTime();
+            this.bRunTest = false;
+        }
+
+        public override string ToString() => string.Format("Type={0}", (object)this.sDevEventType) + "," + string.Format("Dev_VidPid={0}", (object)this.sDeviceVidPid) + "," + string.Format("USB_Address={0}", (object)this.sUsbAddress) + "," + string.Format("Time={0:00}:{1:00}:{2:00}::{3:000}", (object)this.dtLastUpdateTime.Hour, (object)this.dtLastUpdateTime.Minute, (object)this.dtLastUpdateTime.Second, (object)this.dtLastUpdateTime.Millisecond);
+    }
 }

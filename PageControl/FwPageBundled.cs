@@ -10,31 +10,31 @@ using System.Windows.Forms;
 
 namespace PageControl
 {
-  internal class FwPageBundled : FwPage
-  {
-    public FwPageBundled(
-      TabPage mainPage,
-      TabPage imagePage,
-      TabPage progressPage,
-      string imagePath)
-      : base(mainPage, imagePage, progressPage, imagePath)
+    internal class FwPageBundled : FwPage
     {
-    }
+        public FwPageBundled(
+          TabPage mainPage,
+          TabPage imagePage,
+          TabPage progressPage,
+          string imagePath)
+          : base(mainPage, imagePage, progressPage, imagePath)
+        {
+        }
 
-    public override long SelectProduct(string initPath, ref Product product)
-    {
-      if (!File.Exists(initPath))
-        return 50717;
-      this.imagePath = string.Empty;
-      long product1 = Product.GetProduct(initPath, ref product);
-      if (product1 != 0L)
-      {
-        product = (Product) null;
-        this.imagePath = string.Empty;
-        return product1;
-      }
-      this.imagePath = initPath;
-      return 0;
+        public override long SelectProduct(string initPath, ref Product product)
+        {
+            if (!File.Exists(initPath))
+                return 50717;
+            this.imagePath = string.Empty;
+            long product1 = Product.GetProduct(initPath, ref product);
+            if (product1 != 0L)
+            {
+                product = (Product)null;
+                this.imagePath = string.Empty;
+                return product1;
+            }
+            this.imagePath = initPath;
+            return 0;
+        }
     }
-  }
 }

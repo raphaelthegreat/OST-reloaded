@@ -12,62 +12,62 @@ using Utils;
 
 namespace PageControl
 {
-  internal class FwPageSelected : FwPageBundled
-  {
-    private string selectPath;
-
-    public FwPageSelected(TabPage mainPage, TabPage imagePage, TabPage progressPage)
-      : base(mainPage, imagePage, progressPage, "")
+    internal class FwPageSelected : FwPageBundled
     {
-    }
+        private string selectPath;
 
-    public override long SelectProduct(string initPath, ref Product product)
-    {
-      OpenFileDialog openFileDialog = new OpenFileDialog();
-      openFileDialog.InitialDirectory = initPath == string.Empty ? UserConfig.Instance.InitFirmwareDir : Path.GetDirectoryName(initPath);
-      openFileDialog.CheckFileExists = true;
-      openFileDialog.RestoreDirectory = true;
-      openFileDialog.Filter = this.toolParam.MainImageFilter + "|xml files (*.xml)|*.xml";
-      if (openFileDialog.ShowDialog() != DialogResult.OK)
-        return 1223;
-      UserConfig.Instance.InitFirmwareDir = Path.GetDirectoryName(openFileDialog.FileName);
-      return !Path.GetExtension(openFileDialog.FileName).Equals(".ini") ? this.LoadFwImage(openFileDialog.FileName, ref product) : this.LoadAutoTestScript(openFileDialog.FileName, ref product);
-    }
+        public FwPageSelected(TabPage mainPage, TabPage imagePage, TabPage progressPage)
+          : base(mainPage, imagePage, progressPage, "")
+        {
+        }
 
-    public override string SelectPath => this.selectPath;
+        public override long SelectProduct(string initPath, ref Product product)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = initPath == string.Empty ? UserConfig.Instance.InitFirmwareDir : Path.GetDirectoryName(initPath);
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.Filter = this.toolParam.MainImageFilter + "|xml files (*.xml)|*.xml";
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+                return 1223;
+            UserConfig.Instance.InitFirmwareDir = Path.GetDirectoryName(openFileDialog.FileName);
+            return !Path.GetExtension(openFileDialog.FileName).Equals(".ini") ? this.LoadFwImage(openFileDialog.FileName, ref product) : this.LoadAutoTestScript(openFileDialog.FileName, ref product);
+        }
 
-    private void ResetContent()
-    {
-      this.imagePath = string.Empty;
-      this.selectPath = string.Empty;
-      this.toolParam.AutoTest = false;
-    }
+        public override string SelectPath => this.selectPath;
 
-    private long LoadAutoTestScript(string scriptPath, ref Product product)
-    {
-      this.ResetContent();
-      long num = base.SelectProduct(new Profile(scriptPath).ReadString("SUT", "Firmware"), ref product);
-      if (num != 0L)
-      {
-        product = (Product) null;
-        return num;
-      }
-      this.selectPath = scriptPath;
-      this.toolParam.ConfigAutoTest(scriptPath);
-      return 0;
-    }
+        private void ResetContent()
+        {
+            this.imagePath = string.Empty;
+            this.selectPath = string.Empty;
+            this.toolParam.AutoTest = false;
+        }
 
-    private long LoadFwImage(string fwPath, ref Product product)
-    {
-      this.ResetContent();
-      long product1 = Product.GetProduct(fwPath, ref product);
-      if (product1 != 0L)
-      {
-        product = (Product) null;
-        return product1;
-      }
-      this.imagePath = this.selectPath = fwPath;
-      return 0;
+        private long LoadAutoTestScript(string scriptPath, ref Product product)
+        {
+            this.ResetContent();
+            long num = base.SelectProduct(new Profile(scriptPath).ReadString("SUT", "Firmware"), ref product);
+            if (num != 0L)
+            {
+                product = (Product)null;
+                return num;
+            }
+            this.selectPath = scriptPath;
+            this.toolParam.ConfigAutoTest(scriptPath);
+            return 0;
+        }
+
+        private long LoadFwImage(string fwPath, ref Product product)
+        {
+            this.ResetContent();
+            long product1 = Product.GetProduct(fwPath, ref product);
+            if (product1 != 0L)
+            {
+                product = (Product)null;
+                return product1;
+            }
+            this.imagePath = this.selectPath = fwPath;
+            return 0;
+        }
     }
-  }
 }

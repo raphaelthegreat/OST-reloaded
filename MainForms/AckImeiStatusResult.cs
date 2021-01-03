@@ -6,10 +6,10 @@
 
 namespace OnlineUpdateTool.MainForms
 {
-  internal class AckImeiStatusResult
-  {
-    public int ProcessedPsnCount;
-    public int AckFlag;
-    public string Message;
-  }
+    internal class AckImeiStatusResult
+    {
+        public int ProcessedPsnCount;
+        public int AckFlag;
+        public string Message;
+    }
 }

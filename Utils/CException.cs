@@ -9,34 +9,34 @@ using System.Runtime.Serialization;
 
 namespace Utils
 {
-  internal class CException : Exception, ISerializable
-  {
-    private long cResult;
+    internal class CException : Exception, ISerializable
+    {
+        private long cResult;
 
-    public long CResult => this.cResult;
+        public long CResult => this.cResult;
 
-    public CException()
-      : base("")
-      => this.cResult = 0L;
+        public CException()
+          : base("")
+          => this.cResult = 0L;
 
-    public CException(long result)
-      : base("")
-      => this.cResult = result;
+        public CException(long result)
+          : base("")
+          => this.cResult = result;
 
-    public CException(long result, string message)
-      : base(message)
-      => this.cResult = result;
+        public CException(long result, string message)
+          : base(message)
+          => this.cResult = result;
 
-    public CException(string message)
-      : base(message)
-      => this.cResult = 0L;
+        public CException(string message)
+          : base(message)
+          => this.cResult = 0L;
 
-    public CException(string message, Exception inner)
-      : base(message, inner)
-      => this.cResult = 0L;
+        public CException(string message, Exception inner)
+          : base(message, inner)
+          => this.cResult = 0L;
 
-    public CException(SerializationInfo info, StreamingContext context)
-      : base(info, context)
-      => this.cResult = 0L;
-  }
+        public CException(SerializationInfo info, StreamingContext context)
+          : base(info, context)
+          => this.cResult = 0L;
+    }
 }

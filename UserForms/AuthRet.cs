@@ -9,13 +9,13 @@ using System.Runtime.InteropServices;
 
 namespace UserForms
 {
-  [Serializable]
-  [StructLayout(LayoutKind.Sequential, Size = 128)]
-  public struct AuthRet
-  {
-    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1024)]
-    public byte[] bufSignature;
-    [MarshalAs(UnmanagedType.I4)]
-    public int bufSize;
-  }
+    [Serializable]
+    [StructLayout(LayoutKind.Sequential, Size = 128)]
+    public struct AuthRet
+    {
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1024)]
+        public byte[] bufSignature;
+        [MarshalAs(UnmanagedType.I4)]
+        public int bufSize;
+    }
 }

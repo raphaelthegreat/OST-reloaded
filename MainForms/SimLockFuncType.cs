@@ -6,10 +6,10 @@
 
 namespace MainForms
 {
-  internal enum SimLockFuncType
-  {
-    GetStatus,
-    LockSIM,
-    UnlockSIM,
-  }
+    internal enum SimLockFuncType
+    {
+        GetStatus,
+        LockSIM,
+        UnlockSIM,
+    }
 }

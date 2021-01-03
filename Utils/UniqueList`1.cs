@@ -8,13 +8,13 @@ using System.Collections.Generic;
 
 namespace Utils
 {
-  internal class UniqueList<T> : List<T>
-  {
-    public new void Add(T obj)
+    internal class UniqueList<T> : List<T>
     {
-      if (this.Contains(obj))
-        return;
-      base.Add(obj);
+        public new void Add(T obj)
+        {
+            if (this.Contains(obj))
+                return;
+            base.Add(obj);
+        }
     }
-  }
 }

@@ -6,10 +6,10 @@
 
 namespace Params
 {
-  internal class ParamAccount : ToolParam
-  {
-    public ParamAccount() => this.optionFilter = new OptionFilter(true, false, true, true, true, true, true, true, true, true, (ToolParam) this);
+    internal class ParamAccount : ToolParam
+    {
+        public ParamAccount() => this.optionFilter = new OptionFilter(true, false, true, true, true, true, true, true, true, true, (ToolParam)this);
 
-    public override bool UpdateCounter => true;
-  }
+        public override bool UpdateCounter => true;
+    }
 }

@@ -6,18 +6,18 @@
 
 namespace Products
 {
-  internal class ProductQcXml : Product
-  {
-    public override long StartUpdate(
-      string sessionId,
-      string imagePath,
-      string deviceId,
-      int option)
+    internal class ProductQcXml : Product
     {
-      ++this.runCount;
-      return (long) Product.RestoreSettings(sessionId, deviceId, 0U);
-    }
+        public override long StartUpdate(
+          string sessionId,
+          string imagePath,
+          string deviceId,
+          int option)
+        {
+            ++this.runCount;
+            return (long)Product.RestoreSettings(sessionId, deviceId, 0U);
+        }
 
-    public override bool HasUserOption(ProductOptions option) => false;
-  }
+        public override bool HasUserOption(ProductOptions option) => false;
+    }
 }

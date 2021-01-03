@@ -6,5 +6,5 @@
 
 namespace UserForms
 {
-  public delegate bool CompareSutinfoDelegate(string phoneInformation, string imageInformation);
+    public delegate bool CompareSutinfoDelegate(string phoneInformation, string imageInformation);
 }

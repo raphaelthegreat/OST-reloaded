@@ -6,5 +6,5 @@
 
 namespace UserForms
 {
-  public delegate bool DoReportServiceResultDelegate(string name);
+    public delegate bool DoReportServiceResultDelegate(string name);
 }

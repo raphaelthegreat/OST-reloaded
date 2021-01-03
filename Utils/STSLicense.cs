@@ -10,37 +10,37 @@ using System.Runtime.InteropServices;
 
 namespace Utils
 {
-  internal class STSLicense
-  {
-    private static bool EnableRoot;
-    private static bool RewriteIMEI;
-
-    public static void setLicenses(JArray licenseJasonArray)
+    internal class STSLicense
     {
-      STSLicense.resetAllAs(false);
-      foreach (JToken licenseJason in (IEnumerable<JToken>) licenseJasonArray)
-      {
-        string str = (string) licenseJason;
-        if (str == "EnableRoot")
-          STSLicense.EnableRoot = true;
-        else if (str == "RewriteIMEI")
-          STSLicense.RewriteIMEI = true;
-      }
-      STSLicense.setLicensesInCpp(STSLicense.EnableRoot, STSLicense.RewriteIMEI);
+        private static bool EnableRoot;
+        private static bool RewriteIMEI;
+
+        public static void setLicenses(JArray licenseJasonArray)
+        {
+            STSLicense.resetAllAs(false);
+            foreach (JToken licenseJason in (IEnumerable<JToken>)licenseJasonArray)
+            {
+                string str = (string)licenseJason;
+                if (str == "EnableRoot")
+                    STSLicense.EnableRoot = true;
+                else if (str == "RewriteIMEI")
+                    STSLicense.RewriteIMEI = true;
+            }
+            STSLicense.setLicensesInCpp(STSLicense.EnableRoot, STSLicense.RewriteIMEI);
+        }
+
+        public static bool isEnableRoot() => STSLicense.EnableRoot;
+
+        public static bool isRewriteIMEI() => STSLicense.RewriteIMEI;
+
+        public static void resetAllAs(bool bool_value)
+        {
+            STSLicense.EnableRoot = bool_value;
+            STSLicense.RewriteIMEI = bool_value;
+            STSLicense.setLicensesInCpp(STSLicense.EnableRoot, STSLicense.RewriteIMEI);
+        }
+
+        [DllImport("MobileFlashDll.dll", EntryPoint = "setLicenses")]
+        private static extern void setLicensesInCpp(bool enableRoot, bool rewriteIMEI);
     }
-
-    public static bool isEnableRoot() => STSLicense.EnableRoot;
-
-    public static bool isRewriteIMEI() => STSLicense.RewriteIMEI;
-
-    public static void resetAllAs(bool bool_value)
-    {
-      STSLicense.EnableRoot = bool_value;
-      STSLicense.RewriteIMEI = bool_value;
-      STSLicense.setLicensesInCpp(STSLicense.EnableRoot, STSLicense.RewriteIMEI);
-    }
-
-    [DllImport("MobileFlashDll.dll", EntryPoint = "setLicenses")]
-    private static extern void setLicensesInCpp(bool enableRoot, bool rewriteIMEI);
-  }
 }

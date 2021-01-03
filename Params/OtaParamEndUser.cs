@@ -8,14 +8,14 @@ using OtaControl;
 
 namespace Params
 {
-  internal class OtaParamEndUser : OtaParam
-  {
-    public OtaParamEndUser() => this.account = new OtaAccount();
+    internal class OtaParamEndUser : OtaParam
+    {
+        public OtaParamEndUser() => this.account = new OtaAccount();
 
-    public override int MaxCacheImages => 1;
+        public override int MaxCacheImages => 1;
 
-    public override bool UserLoginRequired => true;
+        public override bool UserLoginRequired => true;
 
-    public override string LoginUrl => "http://tpe-ota.fihtdc.com/login.asmx";
-  }
+        public override string LoginUrl => "http://tpe-ota.fihtdc.com/login.asmx";
+    }
 }

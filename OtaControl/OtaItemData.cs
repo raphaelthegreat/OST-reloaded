@@ -9,53 +9,53 @@ using Utils;
 
 namespace OtaControl
 {
-  public class OtaItemData
-  {
-    private OtaData data;
-    private OtaService webService;
-
-    public OtaData Data => this.data;
-
-    public OtaService WebService => this.webService;
-
-    public OtaItemData(OtaData data, OtaService service)
+    public class OtaItemData
     {
-      this.data = this.ToItemData(data);
-      this.webService = service;
-    }
+        private OtaData data;
+        private OtaService webService;
 
-    public OtaItemData(OtaItemData from)
-    {
-      this.data = new OtaData(from.data);
-      this.webService = new OtaService(from.webService);
-    }
+        public OtaData Data => this.data;
 
-    private OtaData ToItemData(OtaData from) => from.SubData(new string[5]
-    {
+        public OtaService WebService => this.webService;
+
+        public OtaItemData(OtaData data, OtaService service)
+        {
+            this.data = this.ToItemData(data);
+            this.webService = service;
+        }
+
+        public OtaItemData(OtaItemData from)
+        {
+            this.data = new OtaData(from.data);
+            this.webService = new OtaService(from.webService);
+        }
+
+        private OtaData ToItemData(OtaData from) => from.SubData(new string[5]
+        {
       "ID",
       "Official",
       "Service",
       "MP",
       "Delta"
-    });
+        });
 
-    public string ID => this.data.Get(nameof (ID));
+        public string ID => this.data.Get(nameof(ID));
 
-    public string Official => this.data.Get(nameof (Official));
+        public string Official => this.data.Get(nameof(Official));
 
-    public string Service => this.data.Get(nameof (Service));
+        public string Service => this.data.Get(nameof(Service));
 
-    public string MP => this.data.Get(nameof (MP));
+        public string MP => this.data.Get(nameof(MP));
 
-    public bool IsDelta => this.data.Get("Delta").Equals("True");
+        public bool IsDelta => this.data.Get("Delta").Equals("True");
 
-    public override bool Equals(object obj) => obj is OtaItemData otaItemData && this.ID.Equals(otaItemData.ID) && this.webService.Equals((object) otaItemData.webService) && this.IsDelta.Equals(otaItemData.IsDelta);
+        public override bool Equals(object obj) => obj is OtaItemData otaItemData && this.ID.Equals(otaItemData.ID) && this.webService.Equals((object)otaItemData.webService) && this.IsDelta.Equals(otaItemData.IsDelta);
 
-    public override int GetHashCode() => (int) Crc32.Compute(Encoding.ASCII.GetBytes(string.Join("", new string[3]
-    {
+        public override int GetHashCode() => (int)Crc32.Compute(Encoding.ASCII.GetBytes(string.Join("", new string[3]
+        {
       this.ID,
       this.webService.ToString(),
       this.IsDelta.ToString()
-    })));
-  }
+        })));
+    }
 }

@@ -6,25 +6,25 @@
 
 namespace OtaControl.PhoneReader
 {
-  public class PhoneInformationEntity
-  {
-    public string otaNb0Update;
-    public string otaDeltaUpdate;
-    public string version;
-    public string subVersion;
-    public string imageId;
-    public string channelId;
-    public string operatorId;
-    public string internalModel;
-    public string externalModel;
-    public string externalVersion;
-    public string deviceId;
-    public string serialNumber;
-    public string mcc;
-    public string mnc;
-    public string skuId;
-    public string cdaVersion;
-    public string storageSize;
-    public string rootStatus;
-  }
+    public class PhoneInformationEntity
+    {
+        public string otaNb0Update;
+        public string otaDeltaUpdate;
+        public string version;
+        public string subVersion;
+        public string imageId;
+        public string channelId;
+        public string operatorId;
+        public string internalModel;
+        public string externalModel;
+        public string externalVersion;
+        public string deviceId;
+        public string serialNumber;
+        public string mcc;
+        public string mnc;
+        public string skuId;
+        public string cdaVersion;
+        public string storageSize;
+        public string rootStatus;
+    }
 }

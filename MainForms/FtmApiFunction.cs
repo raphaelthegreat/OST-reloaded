@@ -6,27 +6,27 @@
 
 namespace MainForms
 {
-  internal enum FtmApiFunction
-  {
-    GetProductID,
-    SetProductID,
-    GetIMEI,
-    SetIMEI,
-    GetIMEI2,
-    SetIMEI2,
-    GetMEID,
-    SetMEID,
-    GetMEID2,
-    SetMEID2,
-    GetBtAddr,
-    SetBtAddr,
-    GetBt2Addr,
-    SetBt2Addr,
-    GetWifiAddr,
-    SetWifiAddr,
-    GetWallpaperID,
-    SetWallpaperId,
-    GetBatteryInfo,
-    SetBatteryInfo,
-  }
+    internal enum FtmApiFunction
+    {
+        GetProductID,
+        SetProductID,
+        GetIMEI,
+        SetIMEI,
+        GetIMEI2,
+        SetIMEI2,
+        GetMEID,
+        SetMEID,
+        GetMEID2,
+        SetMEID2,
+        GetBtAddr,
+        SetBtAddr,
+        GetBt2Addr,
+        SetBt2Addr,
+        GetWifiAddr,
+        SetWifiAddr,
+        GetWallpaperID,
+        SetWallpaperId,
+        GetBatteryInfo,
+        SetBatteryInfo,
+    }
 }

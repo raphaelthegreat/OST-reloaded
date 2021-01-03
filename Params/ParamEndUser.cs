@@ -6,12 +6,12 @@
 
 namespace Params
 {
-  internal class ParamEndUser : ToolParam
-  {
-    public ParamEndUser() => this.optionFilter = new OptionFilter(false, false, true, true, true, false, false, true, true, true, (ToolParam) this);
-
-    public override void EnableBackupOption()
+    internal class ParamEndUser : ToolParam
     {
+        public ParamEndUser() => this.optionFilter = new OptionFilter(false, false, true, true, true, false, false, true, true, true, (ToolParam)this);
+
+        public override void EnableBackupOption()
+        {
+        }
     }
-  }
 }

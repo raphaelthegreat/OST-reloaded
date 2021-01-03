@@ -6,11 +6,11 @@
 
 namespace Products
 {
-  internal enum ImageType
-  {
-    UNKNOEN_TYPE,
-    MLF_TYPE,
-    NB0_TYPE,
-    NV_XML_TYPE,
-  }
+    internal enum ImageType
+    {
+        UNKNOEN_TYPE,
+        MLF_TYPE,
+        NB0_TYPE,
+        NV_XML_TYPE,
+    }
 }

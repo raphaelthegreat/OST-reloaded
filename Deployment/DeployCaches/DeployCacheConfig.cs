@@ -11,31 +11,31 @@ using Utils;
 
 namespace Deployment.DeployCaches
 {
-  public class DeployCacheConfig
-  {
-    private static DeployCacheConfig instance;
-    private Profile config;
-
-    public static DeployCacheConfig Instance => DeployCacheConfig.instance;
-
-    protected DeployCacheConfig(string cacheFolder) => this.config = new Profile(Path.Combine(cacheFolder, "chche_config.ini"));
-
-    public static void CreateInstance(string cacheFolder)
+    public class DeployCacheConfig
     {
-      if (DeployCacheConfig.instance != null)
-        return;
-      DeployCacheConfig.instance = new DeployCacheConfig(cacheFolder);
-    }
+        private static DeployCacheConfig instance;
+        private Profile config;
 
-    public string WebSite
-    {
-      get
-      {
-        string productName = Settings.Default.ProductName;
-        return string.Format("{0}/{1}/{2}/", (object) this.Host, (object) Assembly.GetExecutingAssembly().GetName().Name, (object) productName);
-      }
-    }
+        public static DeployCacheConfig Instance => DeployCacheConfig.instance;
 
-    public string Host => this.config.ReadString("Deploy", nameof (Host), "http://tpe-ota.fihtdc.com/SWUpdateTool/MsiDeploy/").TrimEnd('/');
-  }
+        protected DeployCacheConfig(string cacheFolder) => this.config = new Profile(Path.Combine(cacheFolder, "chche_config.ini"));
+
+        public static void CreateInstance(string cacheFolder)
+        {
+            if (DeployCacheConfig.instance != null)
+                return;
+            DeployCacheConfig.instance = new DeployCacheConfig(cacheFolder);
+        }
+
+        public string WebSite
+        {
+            get
+            {
+                string productName = Settings.Default.ProductName;
+                return string.Format("{0}/{1}/{2}/", (object)this.Host, (object)Assembly.GetExecutingAssembly().GetName().Name, (object)productName);
+            }
+        }
+
+        public string Host => this.config.ReadString("Deploy", nameof(Host), "http://tpe-ota.fihtdc.com/SWUpdateTool/MsiDeploy/").TrimEnd('/');
+    }
 }

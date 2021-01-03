@@ -6,5 +6,5 @@
 
 namespace UserForms
 {
-  public delegate bool AcquireAuthenticationDelegate(string jsonQuery, ref AuthRet authRet);
+    public delegate bool AcquireAuthenticationDelegate(string jsonQuery, ref AuthRet authRet);
 }

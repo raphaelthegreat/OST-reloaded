@@ -6,17 +6,17 @@
 
 namespace MainForms
 {
-  internal enum PhoneKeyType
-  {
-    PSN = 1,
-    IMEI1 = 2,
-    IMEI2 = 3,
-    MEID1 = 4,
-    MEID2 = 5,
-    WiFi_Addr = 6,
-    BT_Addr = 7,
-    BT2_Addr = 8,
-    WallPaper_ID = 9,
-    BatteryInfo = 10, // 0x0000000A
-  }
+    internal enum PhoneKeyType
+    {
+        PSN = 1,
+        IMEI1 = 2,
+        IMEI2 = 3,
+        MEID1 = 4,
+        MEID2 = 5,
+        WiFi_Addr = 6,
+        BT_Addr = 7,
+        BT2_Addr = 8,
+        WallPaper_ID = 9,
+        BatteryInfo = 10, // 0x0000000A
+    }
 }

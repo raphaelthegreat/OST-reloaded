@@ -10,12 +10,12 @@ using System.Security.Cryptography;
 
 namespace Utils
 {
-  public class Md5Ex
-  {
-    public string ComputeFileHash(string path)
+    public class Md5Ex
     {
-      using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
-        return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash((Stream) fileStream)).Replace("-", "");
+        public string ComputeFileHash(string path)
+        {
+            using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
+                return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash((Stream)fileStream)).Replace("-", "");
+        }
     }
-  }
 }

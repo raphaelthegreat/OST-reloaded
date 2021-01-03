@@ -8,8 +8,8 @@ using System.Collections.Generic;
 
 namespace OnlineUpdateTool.MainForms
 {
-  internal class GetNewImeiResult
-  {
-    public List<NewImeiResult> itemList = new List<NewImeiResult>();
-  }
+    internal class GetNewImeiResult
+    {
+        public List<NewImeiResult> itemList = new List<NewImeiResult>();
+    }
 }

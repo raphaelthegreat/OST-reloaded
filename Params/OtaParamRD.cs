@@ -9,19 +9,19 @@ using System.Collections.Generic;
 
 namespace Params
 {
-  internal class OtaParamRD : OtaParam
-  {
-    public OtaParamRD()
+    internal class OtaParamRD : OtaParam
     {
-      string group = "@LR";
-      this.account = new OtaAccount(new OtaData().Set("OGP", group).Set("SGP", group).Set("EL", "N"), group, new List<OtaData>()
+        public OtaParamRD()
+        {
+            string group = "@LR";
+            this.account = new OtaAccount(new OtaData().Set("OGP", group).Set("SGP", group).Set("EL", "N"), group, new List<OtaData>()
       {
         new OtaData().Set("FileHandler", "http://tpe-ota.fihtdc.com/weekly/filehandler.asmx").Set("Login", "http://tpe-ota.fihtdc.com/weekly/login.asmx").Set("SWImage", "http://tpe-ota.fihtdc.com/weekly/swimage.asmx")
       });
+        }
+
+        public override bool UserLoginRequired => false;
+
+        public override string LoginUrl => string.Empty;
     }
-
-    public override bool UserLoginRequired => false;
-
-    public override string LoginUrl => string.Empty;
-  }
 }

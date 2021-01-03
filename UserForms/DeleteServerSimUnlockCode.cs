@@ -6,5 +6,5 @@
 
 namespace UserForms
 {
-  public delegate bool DeleteServerSimUnlockCode(string productid);
+    public delegate bool DeleteServerSimUnlockCode(string productid);
 }

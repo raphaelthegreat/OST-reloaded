@@ -6,13 +6,13 @@
 
 namespace OnlineUpdateTool.MainForms
 {
-  internal class NewImeiResult
-  {
-    public string NewPrimaryImei;
-    public string NewSecondaryImei;
-    public string NewMEID;
-    public string Psn;
-    public bool SuccessFlag;
-    public string ErrorMessage;
-  }
+    internal class NewImeiResult
+    {
+        public string NewPrimaryImei;
+        public string NewSecondaryImei;
+        public string NewMEID;
+        public string Psn;
+        public bool SuccessFlag;
+        public string ErrorMessage;
+    }
 }

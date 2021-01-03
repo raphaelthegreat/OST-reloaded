@@ -6,5 +6,5 @@
 
 namespace UserForms
 {
-  public delegate bool QueryServerSimUnlockCode(string productid, ref StringRet unlockcode);
+    public delegate bool QueryServerSimUnlockCode(string productid, ref StringRet unlockcode);
 }

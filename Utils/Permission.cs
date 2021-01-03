@@ -6,15 +6,15 @@
 
 namespace Utils
 {
-  public class Permission
-  {
-    public UserPermissionGroup Group = UserPermissionGroup.NONE;
-    public bool Enable;
-
-    public Permission(UserPermissionGroup group, bool enable)
+    public class Permission
     {
-      this.Group = group;
-      this.Enable = enable;
+        public UserPermissionGroup Group = UserPermissionGroup.NONE;
+        public bool Enable;
+
+        public Permission(UserPermissionGroup group, bool enable)
+        {
+            this.Group = group;
+            this.Enable = enable;
+        }
     }
-  }
 }

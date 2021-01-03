@@ -6,23 +6,23 @@
 
 namespace MainForms
 {
-  public class GemsQueryDeviceInfo
-  {
-    public string sn;
-    public string guid;
-    public string simpersoFileName;
-    public string simpersoFileContent;
-
-    public GemsQueryDeviceInfo(string sn)
+    public class GemsQueryDeviceInfo
     {
-      this.sn = sn;
-      this.guid = string.Empty;
-      this.simpersoFileName = string.Empty;
-      this.simpersoFileContent = string.Empty;
+        public string sn;
+        public string guid;
+        public string simpersoFileName;
+        public string simpersoFileContent;
+
+        public GemsQueryDeviceInfo(string sn)
+        {
+            this.sn = sn;
+            this.guid = string.Empty;
+            this.simpersoFileName = string.Empty;
+            this.simpersoFileContent = string.Empty;
+        }
+
+        public bool IsValid() => this.sn != string.Empty && this.guid != string.Empty;
+
+        public bool HasSimLockPerso() => this.simpersoFileName != string.Empty && this.simpersoFileContent != string.Empty;
     }
-
-    public bool IsValid() => this.sn != string.Empty && this.guid != string.Empty;
-
-    public bool HasSimLockPerso() => this.simpersoFileName != string.Empty && this.simpersoFileContent != string.Empty;
-  }
 }

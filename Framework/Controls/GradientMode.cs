@@ -6,12 +6,12 @@
 
 namespace Framework.Controls
 {
-  public enum GradientMode
-  {
-    Vertical,
-    VerticalCenter,
-    Horizontal,
-    HorizontalCenter,
-    Diagonal,
-  }
+    public enum GradientMode
+    {
+        Vertical,
+        VerticalCenter,
+        Horizontal,
+        HorizontalCenter,
+        Diagonal,
+    }
 }

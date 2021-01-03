@@ -6,10 +6,10 @@
 
 namespace MainForms
 {
-  internal enum SimLockStatus
-  {
-    Unknown = -1, // 0xFFFFFFFF
-    Unlock = 0,
-    Lock = 1,
-  }
+    internal enum SimLockStatus
+    {
+        Unknown = -1, // 0xFFFFFFFF
+        Unlock = 0,
+        Lock = 1,
+    }
 }

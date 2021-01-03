@@ -6,5 +6,5 @@
 
 namespace UserForms
 {
-  public delegate bool ShowWarningDialogDelegate(string sessionId, int caseId, out int choiceId);
+    public delegate bool ShowWarningDialogDelegate(string sessionId, int caseId, out int choiceId);
 }

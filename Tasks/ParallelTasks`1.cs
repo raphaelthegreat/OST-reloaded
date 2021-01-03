@@ -10,45 +10,45 @@ using Utils;
 
 namespace Tasks
 {
-  public class ParallelTasks<T>
-  {
-    private string sessionId;
-    private List<T> requests;
-    private List<ManualResetEvent> doneEvents;
-
-    public List<T> Requests => this.requests;
-
-    public ParallelTasks(string sessionId)
+    public class ParallelTasks<T>
     {
-      this.sessionId = sessionId;
-      this.requests = new List<T>();
-      this.doneEvents = new List<ManualResetEvent>();
-    }
+        private string sessionId;
+        private List<T> requests;
+        private List<ManualResetEvent> doneEvents;
 
-    public ParallelTasks<T> QueueRequest(
-      T request,
-      ManualResetEvent doneEvent,
-      WaitCallback callback)
-    {
-      this.requests.Add(request);
-      this.doneEvents.Add(doneEvent);
-      ThreadPool.QueueUserWorkItem(new WaitCallback(this.InternalCallback), (object) callback);
-      return this;
-    }
+        public List<T> Requests => this.requests;
 
-    private void InternalCallback(object state)
-    {
-      Sessions.AddChildThread(this.sessionId);
-      try
-      {
-        ((WaitCallback) state)((object) null);
-      }
-      finally
-      {
-        Sessions.RemoveChildThread(this.sessionId);
-      }
-    }
+        public ParallelTasks(string sessionId)
+        {
+            this.sessionId = sessionId;
+            this.requests = new List<T>();
+            this.doneEvents = new List<ManualResetEvent>();
+        }
 
-    public bool WaitAllRequests() => this.doneEvents.Count != 0 && WaitHandle.WaitAll((WaitHandle[]) this.doneEvents.ToArray());
-  }
+        public ParallelTasks<T> QueueRequest(
+          T request,
+          ManualResetEvent doneEvent,
+          WaitCallback callback)
+        {
+            this.requests.Add(request);
+            this.doneEvents.Add(doneEvent);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(this.InternalCallback), (object)callback);
+            return this;
+        }
+
+        private void InternalCallback(object state)
+        {
+            Sessions.AddChildThread(this.sessionId);
+            try
+            {
+                ((WaitCallback)state)((object)null);
+            }
+            finally
+            {
+                Sessions.RemoveChildThread(this.sessionId);
+            }
+        }
+
+        public bool WaitAllRequests() => this.doneEvents.Count != 0 && WaitHandle.WaitAll((WaitHandle[])this.doneEvents.ToArray());
+    }
 }

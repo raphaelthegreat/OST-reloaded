@@ -13,4 +13,8 @@
     <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y /d  &quot;$(SolutionDir)Prebuilt\*.dll&quot; &quot;$(SolutionDir)$(OutDir)&quot;" />
+  </Target>
+
 </Project>

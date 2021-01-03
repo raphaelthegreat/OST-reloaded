@@ -9,11 +9,11 @@ using System.Runtime.InteropServices;
 
 namespace UserForms
 {
-  [Serializable]
-  [StructLayout(LayoutKind.Sequential, Size = 128)]
-  public struct SKUId
-  {
-    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-    public string skuId;
-  }
+    [Serializable]
+    [StructLayout(LayoutKind.Sequential, Size = 128)]
+    public struct SKUId
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+        public string skuId;
+    }
 }

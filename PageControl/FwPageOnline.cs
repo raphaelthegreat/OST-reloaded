@@ -12,41 +12,41 @@ using Utils;
 
 namespace PageControl
 {
-  internal class FwPageOnline : FwPage
-  {
-    public FwPageOnline(TabPage mainPage, TabPage imagePage, TabPage progressPage)
-      : base(mainPage, imagePage, progressPage, "")
+    internal class FwPageOnline : FwPage
     {
-    }
+        public FwPageOnline(TabPage mainPage, TabPage imagePage, TabPage progressPage)
+          : base(mainPage, imagePage, progressPage, "")
+        {
+        }
 
-    public override long SelectImage(string initPath, ref ImageItem item)
-    {
-      OpenFileDialog openFileDialog = new OpenFileDialog();
-      openFileDialog.InitialDirectory = initPath;
-      openFileDialog.CheckFileExists = true;
-      openFileDialog.RestoreDirectory = true;
-      openFileDialog.Filter = this.toolParam.MainImageFilter;
-      return openFileDialog.ShowDialog() != DialogResult.OK ? 1223L : this.LoadImageInformation(openFileDialog.FileName, ref item);
-    }
+        public override long SelectImage(string initPath, ref ImageItem item)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = initPath;
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.Filter = this.toolParam.MainImageFilter;
+            return openFileDialog.ShowDialog() != DialogResult.OK ? 1223L : this.LoadImageInformation(openFileDialog.FileName, ref item);
+        }
 
-    private long LoadImageInformation(string filePath, ref ImageItem item)
-    {
-      try
-      {
-        this.imagePath = filePath;
-        item = new ImageItem(new ImageInformation().GetImageInformation(filePath));
-        return 0;
-      }
-      catch (CException ex)
-      {
-        CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
-        return ex.CResult;
-      }
-      catch (Exception ex)
-      {
-        CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
-        return 1064;
-      }
+        private long LoadImageInformation(string filePath, ref ImageItem item)
+        {
+            try
+            {
+                this.imagePath = filePath;
+                item = new ImageItem(new ImageInformation().GetImageInformation(filePath));
+                return 0;
+            }
+            catch (CException ex)
+            {
+                CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
+                return ex.CResult;
+            }
+            catch (Exception ex)
+            {
+                CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
+                return 1064;
+            }
+        }
     }
-  }
 }

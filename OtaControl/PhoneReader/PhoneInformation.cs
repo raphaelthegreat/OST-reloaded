@@ -13,34 +13,34 @@ using Utils;
 
 namespace OtaControl.PhoneReader
 {
-  public class PhoneInformation
-  {
-    public OtaData GetPhoneInformation(string sessionId, string deviceId)
+    public class PhoneInformation
     {
-      try
-      {
-        StringBuilder phoneInfo = new StringBuilder(1024);
-        int num = PhoneInformation.ReadPhoneInformation(sessionId, deviceId, phoneInfo, phoneInfo.Capacity);
-        if (num == 0)
-          return OtaData.Parse(JsonConvert.DeserializeObject<PhoneInformationEntity>(phoneInfo.ToString()));
-        throw new CException((long) num, "Read device information fails, last error: " + ErrorCode.StringOf((long) num));
-      }
-      catch (CException ex)
-      {
-        throw ex;
-      }
-      catch (Exception ex)
-      {
-        CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
-        throw new CException(1066L, "Catch exception when reading device information.");
-      }
-    }
+        public OtaData GetPhoneInformation(string sessionId, string deviceId)
+        {
+            try
+            {
+                StringBuilder phoneInfo = new StringBuilder(1024);
+                int num = PhoneInformation.ReadPhoneInformation(sessionId, deviceId, phoneInfo, phoneInfo.Capacity);
+                if (num == 0)
+                    return OtaData.Parse(JsonConvert.DeserializeObject<PhoneInformationEntity>(phoneInfo.ToString()));
+                throw new CException((long)num, "Read device information fails, last error: " + ErrorCode.StringOf((long)num));
+            }
+            catch (CException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
+                throw new CException(1066L, "Catch exception when reading device information.");
+            }
+        }
 
-    [DllImport("MobileFlashDll.dll")]
-    private static extern int ReadPhoneInformation(
-      string sessionId,
-      string deviceId,
-      StringBuilder phoneInfo,
-      int phoneInfoSize);
-  }
+        [DllImport("MobileFlashDll.dll")]
+        private static extern int ReadPhoneInformation(
+          string sessionId,
+          string deviceId,
+          StringBuilder phoneInfo,
+          int phoneInfoSize);
+    }
 }

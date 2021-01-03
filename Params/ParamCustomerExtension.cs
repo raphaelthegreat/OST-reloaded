@@ -6,8 +6,8 @@
 
 namespace Params
 {
-  internal class ParamCustomerExtension : ToolParam
-  {
-    public ParamCustomerExtension() => this.optionFilter = new OptionFilter(false, false, true, true, true, true, true, true, true, true, (ToolParam) this);
-  }
+    internal class ParamCustomerExtension : ToolParam
+    {
+        public ParamCustomerExtension() => this.optionFilter = new OptionFilter(false, false, true, true, true, true, true, true, true, true, (ToolParam)this);
+    }
 }

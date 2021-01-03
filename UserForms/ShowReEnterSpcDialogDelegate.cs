@@ -6,7 +6,7 @@
 
 namespace UserForms
 {
-  public delegate bool ShowReEnterSpcDialogDelegate(
+    public delegate bool ShowReEnterSpcDialogDelegate(
     string sessionId,
     out int choiceId,
     ref SpcData data);

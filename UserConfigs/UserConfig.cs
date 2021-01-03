@@ -12,131 +12,131 @@ using Utils;
 
 namespace UserConfigs
 {
-  internal class UserConfig
-  {
-    private static UserConfig instance;
-    private Profile config;
-    private string section;
-
-    protected UserConfig()
+    internal class UserConfig
     {
-      ToolParam instance = ToolParam.Instance;
-      this.config = new Profile(Path.Combine(instance.GetUserTempFolder(nameof (UserConfig)), "user_config.ini"));
-      this.section = Settings.Default.SutProject + instance.ToolUserTitle;
-    }
+        private static UserConfig instance;
+        private Profile config;
+        private string section;
 
-    public static UserConfig Instance
-    {
-      get
-      {
-        if (UserConfig.instance == null)
-          UserConfig.instance = new UserConfig();
-        return UserConfig.instance;
-      }
-    }
+        protected UserConfig()
+        {
+            ToolParam instance = ToolParam.Instance;
+            this.config = new Profile(Path.Combine(instance.GetUserTempFolder(nameof(UserConfig)), "user_config.ini"));
+            this.section = Settings.Default.SutProject + instance.ToolUserTitle;
+        }
 
-    public string LoginAccount
-    {
-      set => this.config.WriteString(this.section, "Account", value);
-      get => this.config.ReadString(this.section, "Account");
-    }
+        public static UserConfig Instance
+        {
+            get
+            {
+                if (UserConfig.instance == null)
+                    UserConfig.instance = new UserConfig();
+                return UserConfig.instance;
+            }
+        }
 
-    public string LoginMacAddress
-    {
-      set => this.config.WriteString(this.section, "MacAddress", value);
-      get => this.config.ReadString(this.section, "MacAddress");
-    }
+        public string LoginAccount
+        {
+            set => this.config.WriteString(this.section, "Account", value);
+            get => this.config.ReadString(this.section, "Account");
+        }
 
-    public string LoginPassword
-    {
-      set => this.config.WriteString(this.section, "Password", this.EncrypText(value));
-      get => RsaCrypt.DecryptString(this.config.ReadString(this.section, "Password"));
-    }
+        public string LoginMacAddress
+        {
+            set => this.config.WriteString(this.section, "MacAddress", value);
+            get => this.config.ReadString(this.section, "MacAddress");
+        }
 
-    public string LoginDomain
-    {
-      set => this.config.WriteString(this.section, "Domain", value);
-      get => this.config.ReadString(this.section, "Domain");
-    }
+        public string LoginPassword
+        {
+            set => this.config.WriteString(this.section, "Password", this.EncrypText(value));
+            get => RsaCrypt.DecryptString(this.config.ReadString(this.section, "Password"));
+        }
 
-    public string AuthUsername
-    {
-      set => this.config.WriteString(this.section, nameof (AuthUsername), value);
-      get => this.config.ReadString(this.section, nameof (AuthUsername));
-    }
+        public string LoginDomain
+        {
+            set => this.config.WriteString(this.section, "Domain", value);
+            get => this.config.ReadString(this.section, "Domain");
+        }
 
-    public string AuthPassword
-    {
-      set => this.config.WriteString(this.section, nameof (AuthPassword), this.EncrypText(value));
-      get => this.DecrypText(this.config.ReadString(this.section, nameof (AuthPassword)));
-    }
+        public string AuthUsername
+        {
+            set => this.config.WriteString(this.section, nameof(AuthUsername), value);
+            get => this.config.ReadString(this.section, nameof(AuthUsername));
+        }
 
-    public string AuthDomain
-    {
-      set => this.config.WriteString(this.section, nameof (AuthDomain), value);
-      get => this.config.ReadString(this.section, nameof (AuthDomain));
-    }
+        public string AuthPassword
+        {
+            set => this.config.WriteString(this.section, nameof(AuthPassword), this.EncrypText(value));
+            get => this.DecrypText(this.config.ReadString(this.section, nameof(AuthPassword)));
+        }
 
-    public string ProxyAuthUsername
-    {
-      set => this.config.WriteString(this.section, nameof (ProxyAuthUsername), value);
-      get => this.config.ReadString(this.section, "AuthUsername");
-    }
+        public string AuthDomain
+        {
+            set => this.config.WriteString(this.section, nameof(AuthDomain), value);
+            get => this.config.ReadString(this.section, nameof(AuthDomain));
+        }
 
-    public string ProxyAuthPassword
-    {
-      set => this.config.WriteString(this.section, nameof (ProxyAuthPassword), this.EncrypText(value));
-      get => this.DecrypText(this.config.ReadString(this.section, "AuthPassword"));
-    }
+        public string ProxyAuthUsername
+        {
+            set => this.config.WriteString(this.section, nameof(ProxyAuthUsername), value);
+            get => this.config.ReadString(this.section, "AuthUsername");
+        }
 
-    public string ProxyAuthDomain
-    {
-      set => this.config.WriteString(this.section, nameof (ProxyAuthDomain), value);
-      get => this.config.ReadString(this.section, "AuthDomain");
-    }
+        public string ProxyAuthPassword
+        {
+            set => this.config.WriteString(this.section, nameof(ProxyAuthPassword), this.EncrypText(value));
+            get => this.DecrypText(this.config.ReadString(this.section, "AuthPassword"));
+        }
 
-    public string SerialNumber
-    {
-      set => this.config.WriteString(this.section, "SN", value);
-      get => this.config.ReadString(this.section, "SN");
-    }
+        public string ProxyAuthDomain
+        {
+            set => this.config.WriteString(this.section, nameof(ProxyAuthDomain), value);
+            get => this.config.ReadString(this.section, "AuthDomain");
+        }
 
-    public string InitFirmwareDir
-    {
-      set => this.config.WriteString(this.section, nameof (InitFirmwareDir), value);
-      get => this.config.ReadString(this.section, nameof (InitFirmwareDir));
-    }
+        public string SerialNumber
+        {
+            set => this.config.WriteString(this.section, "SN", value);
+            get => this.config.ReadString(this.section, "SN");
+        }
 
-    public string InitSimPersoDir
-    {
-      set => this.config.WriteString(this.section, nameof (InitSimPersoDir), value);
-      get => this.config.ReadString(this.section, nameof (InitSimPersoDir));
-    }
+        public string InitFirmwareDir
+        {
+            set => this.config.WriteString(this.section, nameof(InitFirmwareDir), value);
+            get => this.config.ReadString(this.section, nameof(InitFirmwareDir));
+        }
 
-    private string EncrypText(string input)
-    {
-      try
-      {
-        return RsaCrypt.EncryptString(input);
-      }
-      catch (Exception ex)
-      {
-        CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
-        return string.Empty;
-      }
-    }
+        public string InitSimPersoDir
+        {
+            set => this.config.WriteString(this.section, nameof(InitSimPersoDir), value);
+            get => this.config.ReadString(this.section, nameof(InitSimPersoDir));
+        }
 
-    private string DecrypText(string input)
-    {
-      try
-      {
-        return RsaCrypt.DecryptString(input);
-      }
-      catch (Exception ex)
-      {
-        CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
-        return string.Empty;
-      }
+        private string EncrypText(string input)
+        {
+            try
+            {
+                return RsaCrypt.EncryptString(input);
+            }
+            catch (Exception ex)
+            {
+                CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
+                return string.Empty;
+            }
+        }
+
+        private string DecrypText(string input)
+        {
+            try
+            {
+                return RsaCrypt.DecryptString(input);
+            }
+            catch (Exception ex)
+            {
+                CLogs.E("Catch exception - " + ex.Message + ex.StackTrace);
+                return string.Empty;
+            }
+        }
     }
-  }
 }

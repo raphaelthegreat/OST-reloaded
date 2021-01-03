@@ -9,67 +9,67 @@ using System.Threading;
 
 namespace Utils
 {
-  internal class MutexLock
-  {
-    private Mutex mutex;
-    private string mutexName;
-
-    public string Name => this.mutexName;
-
-    public MutexLock(string name) => this.mutexName = name;
-
-    public bool Create(bool initialOwned)
+    internal class MutexLock
     {
-      try
-      {
-        this.mutex = new Mutex(initialOwned, this.mutexName);
-        return true;
-      }
-      catch (Exception ex)
-      {
-        return false;
-      }
-    }
+        private Mutex mutex;
+        private string mutexName;
 
-    public bool WaitExit(int timeout)
-    {
-      try
-      {
-        if (!this.mutex.WaitOne(timeout))
-          return false;
-        this.mutex.ReleaseMutex();
-        return true;
-      }
-      catch (Exception ex)
-      {
-        return false;
-      }
-    }
+        public string Name => this.mutexName;
 
-    public bool OpenExisting()
-    {
-      try
-      {
-        this.mutex = Mutex.OpenExisting(this.mutexName);
-        return true;
-      }
-      catch (Exception ex)
-      {
-        return false;
-      }
-    }
+        public MutexLock(string name) => this.mutexName = name;
 
-    public void Release()
-    {
-      try
-      {
-        if (this.mutex == null)
-          return;
-        this.mutex.ReleaseMutex();
-      }
-      catch (Exception ex)
-      {
-      }
+        public bool Create(bool initialOwned)
+        {
+            try
+            {
+                this.mutex = new Mutex(initialOwned, this.mutexName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool WaitExit(int timeout)
+        {
+            try
+            {
+                if (!this.mutex.WaitOne(timeout))
+                    return false;
+                this.mutex.ReleaseMutex();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool OpenExisting()
+        {
+            try
+            {
+                this.mutex = Mutex.OpenExisting(this.mutexName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public void Release()
+        {
+            try
+            {
+                if (this.mutex == null)
+                    return;
+                this.mutex.ReleaseMutex();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
-  }
 }

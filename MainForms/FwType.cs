@@ -6,10 +6,10 @@
 
 namespace MainForms
 {
-  internal enum FwType
-  {
-    FW_TYPE_UNKNOWN,
-    FW_TYPE_MLF,
-    FW_TYPE_NB0,
-  }
+    internal enum FwType
+    {
+        FW_TYPE_UNKNOWN,
+        FW_TYPE_MLF,
+        FW_TYPE_NB0,
+    }
 }

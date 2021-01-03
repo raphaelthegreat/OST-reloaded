@@ -6,8 +6,8 @@
 
 namespace Products
 {
-  internal class ProductT2 : ProductFastboot
-  {
-    public override bool HasUserOption(ProductOptions option) => false;
-  }
+    internal class ProductT2 : ProductFastboot
+    {
+        public override bool HasUserOption(ProductOptions option) => false;
+    }
 }

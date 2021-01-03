@@ -6,18 +6,18 @@
 
 namespace Products
 {
-  internal class ProductT1 : ProductFastboot
-  {
-    public override long StartUpdate(
-      string sessionId,
-      string imagePath,
-      string deviceId,
-      int option)
+    internal class ProductT1 : ProductFastboot
     {
-      ++this.runCount;
-      return this.IsDownloadOption(option, ProductOptions.NATIVE_UPDATE_PROCESS) || this.toolParam.Option.DoEmergecyDownload ? (long) Product.EmergencyUpdateSoftware(sessionId, this.GetUserOptions(option)) : (long) Product.UpdateSoftware(sessionId, deviceId, this.GetUserOptions(option));
-    }
+        public override long StartUpdate(
+          string sessionId,
+          string imagePath,
+          string deviceId,
+          int option)
+        {
+            ++this.runCount;
+            return this.IsDownloadOption(option, ProductOptions.NATIVE_UPDATE_PROCESS) || this.toolParam.Option.DoEmergecyDownload ? (long)Product.EmergencyUpdateSoftware(sessionId, this.GetUserOptions(option)) : (long)Product.UpdateSoftware(sessionId, deviceId, this.GetUserOptions(option));
+        }
 
-    public override bool HasUserOption(ProductOptions option) => option == ProductOptions.NONE || option == ProductOptions.ERASE_USER_DATA && this.HasEraseUserDataOption && this.toolParam.Option.EraseUserData || (option == ProductOptions.NATIVE_UPDATE_PROCESS && this.HasNativeOption && this.toolParam.Option.NativeUpdate || (option == ProductOptions.UNLOCK_SCREEN_LOCK && this.toolParam.Option.UnlockScreenLock || option == ProductOptions.COLLECT_APR_LOG && this.toolParam.Option.CollectAprLog));
-  }
+        public override bool HasUserOption(ProductOptions option) => option == ProductOptions.NONE || option == ProductOptions.ERASE_USER_DATA && this.HasEraseUserDataOption && this.toolParam.Option.EraseUserData || (option == ProductOptions.NATIVE_UPDATE_PROCESS && this.HasNativeOption && this.toolParam.Option.NativeUpdate || (option == ProductOptions.UNLOCK_SCREEN_LOCK && this.toolParam.Option.UnlockScreenLock || option == ProductOptions.COLLECT_APR_LOG && this.toolParam.Option.CollectAprLog));
+    }
 }

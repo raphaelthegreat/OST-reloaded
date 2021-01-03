@@ -8,12 +8,12 @@ using OtaControl;
 
 namespace Params
 {
-  internal class OtaParamAccount : OtaParam
-  {
-    public OtaParamAccount() => this.account = new OtaAccount();
+    internal class OtaParamAccount : OtaParam
+    {
+        public OtaParamAccount() => this.account = new OtaAccount();
 
-    public override bool UserLoginRequired => true;
+        public override bool UserLoginRequired => true;
 
-    public override string LoginUrl => "http://tpe-ota.fihtdc.com/login.asmx";
-  }
+        public override string LoginUrl => "http://tpe-ota.fihtdc.com/login.asmx";
+    }
 }

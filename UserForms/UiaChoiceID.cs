@@ -6,11 +6,11 @@
 
 namespace UserForms
 {
-  internal enum UiaChoiceID
-  {
-    choiceIDCancel = 1,
-    choiceIDRetry = 2,
-    choiceIDIgnore = 3,
-    choiceIDOk = 4,
-  }
+    internal enum UiaChoiceID
+    {
+        choiceIDCancel = 1,
+        choiceIDRetry = 2,
+        choiceIDIgnore = 3,
+        choiceIDOk = 4,
+    }
 }

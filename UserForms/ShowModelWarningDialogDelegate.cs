@@ -6,7 +6,7 @@
 
 namespace UserForms
 {
-  public delegate bool ShowModelWarningDialogDelegate(
+    public delegate bool ShowModelWarningDialogDelegate(
     string sessionId,
     string phoneModel,
     string imageModel,
