@@ -408,4 +408,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y /d  "$(SolutionDir)Prebuilt\*.dll" "$(SolutionDir)$(OutDir)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
